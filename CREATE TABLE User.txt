@@ -1,0 +1,11 @@
+    CREATE TABLE [User]
+    (
+        Id INT IDENTITY(1,1)
+        ,FirstName VARCHAR(30)
+        ,LastName VARCHAR(50)
+        ,Username VARCHAR(50)
+        --public byte[] PasswordHash { get; set; }
+		,PasswordHash VARBINARY(128)
+        --public byte[] PasswordSalt { get; set; }
+		,PasswordSalt VARBINARY(128)
+    )
