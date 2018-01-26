@@ -24,8 +24,7 @@ namespace AspNetCoreWebAPI.Services
 
         public void AddSurvey(SurveyDTO survey)
         {
-            // For Demo purposes only: Get next id
-            var id = GetSurveys().Max(m => m.Id) + 1;
+             var id = GetSurveys().Max(m => m.Id) + 1;
             survey.Id = id;
             MocksurveyData.Current.Surveys.Add(survey);
         }
@@ -35,7 +34,6 @@ namespace AspNetCoreWebAPI.Services
             return true;
         }
 
-        //TODO: Add remaining fields from table
         public void UpdateSurvey(int id, SurveyUpdateDTO survey)
         {
             var surveyToUpdate = GetSurvey(id);
@@ -68,8 +66,6 @@ namespace AspNetCoreWebAPI.Services
         public void DeleteSurvey(SurveyDTO survey)
         {
 
-            // Alternative implementation to remove the books from a survey
-            // MockData.Current.Books.RemoveAll(b => b.SurveyId.Equals(survey.Id));
 
             MocksurveyData.Current.Surveys.Remove(survey);
         }

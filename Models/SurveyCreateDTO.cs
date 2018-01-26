@@ -6,9 +6,6 @@ namespace AspNetCoreWebAPI.Models
     public class SurveyCreateDTO
     {
 
-        //  [Key]
-        //  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //Since the survey does not yet exist in the collection, it hasn't got an id
         //  This is a DTO for editing, so no id here.
         //public int Id { get; set; }
 

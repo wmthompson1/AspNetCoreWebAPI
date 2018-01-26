@@ -6,6 +6,8 @@ using AspNetCoreWebAPI.Data;
 using System;
 using AutoMapper;
 
+//William Thompson 1/19/2018
+
 namespace AspNetCoreWebAPI.Services
 {
     public class SurveySqlRepository : ISurveyRepository
@@ -19,25 +21,10 @@ namespace AspNetCoreWebAPI.Services
             _db = db;
         }
 
-        //public IEnumerable<SurveyDTO> GetSurveys()
-        //{
-        //    return MocksurveyData.Current.Surveys;
-        //}
-
         public IEnumerable<SurveyDTO> GetSurveys()
         {
-            //  return Mapper.Map<IEnumerable<SurveyDTO>>(_db.Surveys);
             return Mapper.Map<IEnumerable<SurveyDTO>>(_db.Survey);
         }
-
-        //public SurveyDTO GetSurvey(int Id)
-        //{
-        //    var Survey = MocksurveyData.Current.Surveys.FirstOrDefault(p =>
-        //        p.Id.Equals(Id));
-
-
-        //    return Survey;
-        //}
 
         public SurveyDTO GetSurvey(int Id)
         {
@@ -50,14 +37,6 @@ namespace AspNetCoreWebAPI.Services
             return surveyDTO;
         }
 
-        //public void AddSurvey(SurveyDTO survey)
-        //{
-        //    // For Demo purposes only: Get next id
-        //    var id = GetSurveys().Max(m => m.Id) + 1;
-        //    survey.Id = id;
-        //    MocksurveyData.Current.Surveys.Add(survey);
-        //}
-
         public void AddSurvey(SurveyDTO survey)
         {
             var surveyToAdd = Mapper.Map<Survey>(survey);
@@ -69,8 +48,7 @@ namespace AspNetCoreWebAPI.Services
             return _db.SaveChanges() >= 0;
         }
 
-        //William Thompson 1/19/2018
-        public void UpdateSurvey(int id, SurveyUpdateDTO survey)
+         public void UpdateSurvey(int id, SurveyUpdateDTO survey)
         {
             var stub = GetSurvey(id);
 

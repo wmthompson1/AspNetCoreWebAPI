@@ -4,26 +4,14 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using AutoMapper;
-
-//using System;
 using System.Collections.Generic;
-//using Microsoft.AspNetCore.Mvc;
-//using AspNetCoreWebAPI.Services;
-//using AspNetCoreWebAPI.Dtos;
-//Models folder here contains helpers and DTO's
-//Acronyms are all uppercase
-//using AspNetCoreWebAPI.Models;
-//using AspNetCoreWebAPI.Helpers;
-//Models folder here contains helpers and DTO's
 using Microsoft.Extensions.Options;
-//using AutoMapper;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using AspNetCoreWebAPI.Entities;
 using Microsoft.AspNetCore.Cors;
-//using Microsoft.AspNetCore.Authorization;
 
 
 namespace AspNetCoreWebAPI.Controllers
@@ -45,10 +33,6 @@ namespace AspNetCoreWebAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-
-            //var survey = _rep.GetSurveys();
-            //var surveyDTO = _mapper.Map<SurveyDTO>(survey);
-            //return Ok(surveyDTO);
 
             return Ok(_rep.GetSurveys());
         }
