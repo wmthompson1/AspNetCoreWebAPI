@@ -19,6 +19,9 @@ public class AutoMapperProfileConfiguration : Profile
             CreateMap<User, UserDTO>();
             CreateMap<UserDTO, User>();
             // Use CreateMap... Etc.. here (Profile methods are the same as configuration methods)
+
+            CreateMap<SurveyQuestionDetail, SurveyQuestionDetailDTO>();
+            CreateMap<SurveyQuestionDetailDTO, SurveyQuestionDetail>();
         }
 
         //public AutoMapperProfileConfiguration()

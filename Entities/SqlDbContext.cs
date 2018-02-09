@@ -9,6 +9,7 @@ namespace AspNetCoreWebAPI.Entities
         public DbSet<Book> Books { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Survey> Survey { get; set; }
+        public DbSet<SurveyQuestionDetail> SurveyQuestionDetail { get; set; }
 
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
         : base(options)

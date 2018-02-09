@@ -50,5 +50,6 @@ namespace AspNetCoreWebAPI.Models
 
         [DataType(DataType.Date)]
         public DateTime OpenDate { get; set; }
+
     }
 }

@@ -16,6 +16,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using AutoMapper;
+using Serilog;
 
 namespace AspNetCoreWebAPI
 {
@@ -34,14 +35,22 @@ namespace AspNetCoreWebAPI
                 builder.AddUserSecrets<Startup>();
             }
 
+            Log.Logger = new LoggerConfiguration()
+                .Enrich.FromLogContext()
+                .WriteTo.Console()
+                .CreateLogger();
+
             Configuration = builder.Build();
+
         }
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            
 
+            services.AddLogging(loggingBuilder =>
+            loggingBuilder.AddSerilog(dispose: true));
+            
             services.AddDirectoryBrowser();
 
             services.AddCors(options =>
@@ -53,7 +62,9 @@ namespace AspNetCoreWebAPI
                     .AllowCredentials());
             });
 
-            var conn = Configuration["connectionStrings:sqlConnection"];
+            //var conn = Configuration["connectionStrings:sqlConnection"];
+            var conn = Configuration["connectionStrings:CCTSTSFContext"];
+            
             services.AddDbContext<SqlDbContext>(options =>
                 options.UseSqlServer(conn));
 
@@ -115,11 +126,11 @@ namespace AspNetCoreWebAPI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         // logging update, William Thompson 1/15/2017 see program.cs
-        // 
+        // **NOTE: Serilog logging recommende getting rid of startup logging, but the logging init (2.0) is in main.
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //loggerFactory.AddConsole();
-
+ 
 
             //if (env.IsDevelopment())
             //{

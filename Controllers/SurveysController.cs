@@ -12,7 +12,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using AspNetCoreWebAPI.Entities;
 using Microsoft.AspNetCore.Cors;
-
+using Microsoft.Extensions.Logging;
 
 namespace AspNetCoreWebAPI.Controllers
 {
