@@ -13,8 +13,8 @@ namespace AspNetCoreWebAPI.Entities
         //must use fluent api to configure composite keys
       
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
-        [Key]
+        //[Required]
+        //[Key]
         public long Id { get; set; }
 
         [Required]
@@ -59,6 +59,12 @@ namespace AspNetCoreWebAPI.Entities
         public string Instructions { get; set; }
 
         public decimal? PageSortId { get; set; }
+
+        [StringLength(7)]
+        public string leaverYear { get; set; }
+
+        [StringLength(50)]
+        public string surveyTypeCode { get; set; }
 
 
     }

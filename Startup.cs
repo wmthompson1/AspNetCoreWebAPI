@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using AutoMapper;
 using Serilog;
+using Serilog.Events;
 
 namespace AspNetCoreWebAPI
 {
@@ -37,7 +38,10 @@ namespace AspNetCoreWebAPI
 
             Log.Logger = new LoggerConfiguration()
                 .Enrich.FromLogContext()
+                .MinimumLevel.Debug()
+                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                 .WriteTo.Console()
+               
                 .CreateLogger();
 
             Configuration = builder.Build();
@@ -69,29 +73,16 @@ namespace AspNetCoreWebAPI
                 options.UseSqlServer(conn));
 
             services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreSqlRepository));
-            //services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreMockRepository));
             services.AddScoped(typeof(IGenericEFRepository), typeof(GenericEFRepository));
             // William Thompson 1/15
-            //services.AddScoped(typeof(ISurveyRepository), typeof(SurveyMockRepository));
             services.AddScoped(typeof(ISurveyRepository), typeof(SurveySqlRepository));
-            // William Thompson 1/17
+            services.AddScoped(typeof(ISurveyQuestionDetailRepository), typeof(SurveyQuestionDetailSqlRepository));
             services.AddScoped(typeof(IUserService), typeof(UserService));
-
-            // v1 automapper
-
-            //var config = new AutoMapper.MapperConfiguration(cfg =>
-            //{
-            //    cfg.AddProfile(new Models.AutoMapperProfileConfiguration());
-            //});
-
-            //var mapper = config.CreateMapper();
-            //services.AddSingleton(mapper);
-
             
             services.AddMvc();
 
-            //services.AddAutoMapper(); // <-- This is the line you add. // services.AddAutoMapper(typeof(Startup)); // <-- newer automapper version uses this signature.
-            services.AddAutoMapper(typeof(Startup)); // <-- newer automapper version uses this signature.
+            //automapper William Thompson
+            services.AddAutoMapper(typeof(Startup)); 
 
             // CORS
             services.Configure<MvcOptions>(options =>
@@ -101,41 +92,18 @@ namespace AspNetCoreWebAPI
 
             });
 
-
-            //AutoMapper.Mapper.Initialize(config =>
-            //{
-            //    config.CreateMap<Entities.Book, Models.BookDTO>();
-            //    config.CreateMap<Models.BookDTO, Entities.Book>();
-            //    config.CreateMap<Entities.Publisher, Models.PublisherDTO>();
-            //    config.CreateMap<Models.PublisherDTO, Entities.Publisher>();
-            //    config.CreateMap<Models.PublisherUpdateDTO, Entities.Publisher>();
-            //    config.CreateMap<Entities.Publisher, Models.PublisherUpdateDTO>();
-            //    config.CreateMap<Models.BookUpdateDTO, Entities.Book>();
-            //    config.CreateMap<Entities.Book, Models.BookUpdateDTO>();
-
-            //    // William Thompson
-            //   // config.CreateMap<Entities.Survey, Models.SurveyDTO>();
-            //   // config.CreateMap<Models.SurveyDTO, Entities.Survey>();
-
-            //    // William Thompson
-            //    config.CreateMap<Entities.User, Models.UserDTO>();
-            //    config.CreateMap<Models.UserDTO, Entities.User>();
-            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         // logging update, William Thompson 1/15/2017 see program.cs
-        // **NOTE: Serilog logging recommende getting rid of startup logging, but the logging init (2.0) is in main.
+        // **NOTE: Serilog logging recommends getting rid of startup logging, but the logging init (2.0) is in main.
+        // https://github.com/serilog/serilog-aspnetcore
+
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
  
-
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
@@ -143,10 +111,9 @@ namespace AspNetCoreWebAPI
             app.UseDirectoryBrowser();
             app.UseStatusCodePages();
 
-            // Shows UseCors with CorsPolicyBuilder.
+            // CORS William Thompson
             app.UseCors("CorsPolicy");
 
-            // Shows UseCors with CorsPolicyBuilder.
             app.UseCors(builder =>
                builder.WithOrigins("http://localhost:4200"));
 

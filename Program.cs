@@ -1,4 +1,4 @@
-﻿#define ExpandDefault // TemplateCode or ExpandDefault or FilterInCode or MinLevel or FilterFunction
+﻿#define MinLevel // TemplateCode or ExpandDefault or FilterInCode or MinLevel or FilterFunction
 
 
 using System;
@@ -10,7 +10,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-
+using Serilog;
+using Serilog.Events;
 
 namespace AspNetCoreWebAPI
 {
@@ -40,6 +41,7 @@ namespace AspNetCoreWebAPI
             var webHost = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
+
                 .ConfigureAppConfiguration((hostingContext, config) =>
                 {
                     var env = hostingContext.HostingEnvironment;
@@ -48,15 +50,8 @@ namespace AspNetCoreWebAPI
                     config.AddEnvironmentVariables();
                 })
 
-                //**NOTE: Testing Serilog logging 2/9/2018 William Thompson
-                //.ConfigureLogging((hostingContext, logging) =>
-                //{
-                //    logging.AddConfiguration(hostingContext.Configuration.GetSection("Logging"));
-                //    logging.AddConsole();
-                //    logging.AddDebug();
-     
-                //})
                 .UseStartup<Startup>()
+        
                 .Build();
 
             webHost.Run();
@@ -113,7 +108,29 @@ namespace AspNetCoreWebAPI
         #region snippet_MinLevel
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
+        // switched config to 'minLevel' 2/11/18
+                .UseContentRoot(Directory.GetCurrentDirectory())
+       
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    var env = hostingContext.HostingEnvironment;
+                    config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                          .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true);
+                    config.AddEnvironmentVariables();
+                })
+
+                   // comment out the below and paste in serilog per web resource below that
+                   // .ConfigureLogging(logging => logging.SetMinimumLevel(LogLevel.Warning))
+                   .ConfigureLogging
+                    (
+                        (hostingContext, loggingBuilder) =>
+                            loggingBuilder.AddSerilog
+                            (
+                                new LoggerConfiguration()
+                                    .ReadFrom.ConfigurationSection(hostingContext.Configuration.GetSection("Serilog"))
+                                    .CreateLogger()
+                            )
+                    )
                 .Build();
         #endregion
 #elif FilterFunction

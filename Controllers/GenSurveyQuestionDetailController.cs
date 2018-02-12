@@ -39,78 +39,33 @@ namespace AspNetCoreWebAPI.Controllers
             return Ok(DTO);
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody]SurveyQuestionDetailDTO DTO)
-        {
-            if (DTO == null) return BadRequest();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+        //[HttpGet("{id}", Name = "GetSurveyQuestionDetail")]
+        //public IActionResult Get(int id)
+        //{
+        //    var surveyQuestionDetail = _rep.GetSurveyQuestionDetail(id);
 
-            var itemToCreate = Mapper.Map<SurveyQuestionDetail>(DTO);
+        //    if (surveyQuestionDetail == null) return NotFound();
 
-            _rep.Add(itemToCreate);
+        //    return Ok(surveyQuestionDetail);
+        //}
 
-            if (!_rep.Save()) return StatusCode(500,
-                "A problem occurred while handling your request.");
+        //// TODO: William Thompson
 
-            var createdDTO = Mapper.Map<SurveyQuestionDetailDTO>(itemToCreate);
+        //[HttpPost]
+        //public IActionResult Post([FromBody] SurveyQuestionDetailDTO surveyQuestionDetail)
 
-            return CreatedAtRoute("GetGenericSurveyQuestionDetail",
-                new { id = createdDTO.Id }, createdDTO);
-        }
+        //{
 
-        [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody]SurveyQuestionDetailUpdateDTO DTO)
-        {
-            if (DTO == null) return BadRequest();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+        //    if (surveyQuestionDetail == null) return BadRequest();
+        //    if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            var entity = _rep.Get<SurveyQuestionDetail>(id);
-            if (entity == null) return NotFound();
+        //    _rep.AddSurveyQuestionDetail(surveyQuestionDetail);
 
-            Mapper.Map(DTO, entity);
+        //    return NoContent();
 
-            if (!_rep.Save()) return StatusCode(500,
-                "A problem happened while handling your request.");
+        //}
 
-            return NoContent();
-        }
 
-        [HttpPatch("{id}")]
-        public IActionResult Patch(int id, [FromBody]JsonPatchDocument<SurveyQuestionDetailUpdateDTO> DTO)
-        {
-            if (DTO == null) return BadRequest();
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            var entity = _rep.Get<SurveyQuestionDetail>(id);
-            if (entity == null) return NotFound();
-
-            var entityToPatch = Mapper.Map<SurveyQuestionDetailUpdateDTO>(entity);
-            DTO.ApplyTo(entityToPatch, ModelState);
-            TryValidateModel(entityToPatch);
-            if (!ModelState.IsValid) return BadRequest(ModelState);
-
-            Mapper.Map(entityToPatch, entity);
-
-            if (!_rep.Save()) return StatusCode(500,
-                "A problem happened while handling your request.");
-
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            if (!_rep.Exists<SurveyQuestionDetail>(id)) return NotFound();
-
-            var entityToDelete = _rep.Get<SurveyQuestionDetail>(id);
-
-            _rep.Delete(entityToDelete);
-
-            if (!_rep.Save()) return StatusCode(500,
-                "A problem occurred while handling your request.");
-
-            return NoContent();
-        }
 
     }
 }

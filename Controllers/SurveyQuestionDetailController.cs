@@ -48,8 +48,9 @@ namespace AspNetCoreWebAPI.Controllers
 
         // TODO: William Thompson
 
-        [HttpPost]
-        public IActionResult Post([FromBody] SurveyQuestionDetailDTO surveyQuestionDetail)
+        
+        [HttpPost("{id}", Name = "PostSurveyQuestionDetail")]
+        public IActionResult Post([FromBody] SurveyQuestionDetailCreateDTO surveyQuestionDetail)
 
         {
 

@@ -7,7 +7,7 @@ namespace AspNetCoreWebAPI.Services
     {
         IEnumerable<SurveyQuestionDetailDTO> GetSurveyQuestionDetails();
         SurveyQuestionDetailDTO GetSurveyQuestionDetail(int SurveyId);
-        void AddSurveyQuestionDetail(SurveyQuestionDetailDTO SurveyQuestionDetail);
+        void AddSurveyQuestionDetail(SurveyQuestionDetailCreateDTO SurveyQuestionDetail);
         //void UpdateSurveyQuestionDetail(int id, SurveyQuestionUpdateDTO SurveyQuestionDetail);
         //void DeleteSurveyQuestionDetail(SurveyQuestionDetailDTO SurveyQuestionDetail);
         //bool Save();
