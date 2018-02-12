@@ -36,5 +36,30 @@ namespace AspNetCoreWebAPI.Controllers
             return Ok(_rep.GetSurveyQuestionDetails());
         }
 
+        [HttpGet("{id}", Name = "GetSurveyQuestionDetail")]
+        public IActionResult Get(int id)
+        {
+            var surveyQuestionDetail = _rep.GetSurveyQuestionDetail(id);
+
+            if (surveyQuestionDetail == null) return NotFound();
+
+            return Ok(surveyQuestionDetail);
+        }
+
+        // TODO: William Thompson
+
+        [HttpPost]
+        public IActionResult Post([FromBody] SurveyQuestionDetailDTO surveyQuestionDetail)
+
+        {
+
+            if (surveyQuestionDetail == null) return BadRequest();
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            _rep.AddSurveyQuestionDetail(surveyQuestionDetail);
+
+            return NoContent();
+
+        }
     }
 }

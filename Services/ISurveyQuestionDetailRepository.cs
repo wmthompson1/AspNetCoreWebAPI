@@ -6,12 +6,12 @@ namespace AspNetCoreWebAPI.Services
     public interface ISurveyQuestionDetailRepository
     {
         IEnumerable<SurveyQuestionDetailDTO> GetSurveyQuestionDetails();
-        //SurveyDTO GetSurvey(int SurveyId);
-        //void AddSurvey(SurveyDTO Survey);
-        //void UpdateSurvey(int id, SurveyUpdateDTO Survey);
-        //void DeleteSurvey(SurveyDTO Survey);
+        SurveyQuestionDetailDTO GetSurveyQuestionDetail(int SurveyId);
+        void AddSurveyQuestionDetail(SurveyQuestionDetailDTO SurveyQuestionDetail);
+        //void UpdateSurveyQuestionDetail(int id, SurveyQuestionUpdateDTO SurveyQuestionDetail);
+        //void DeleteSurveyQuestionDetail(SurveyQuestionDetailDTO SurveyQuestionDetail);
         //bool Save();
-        //bool SurveyExists(int SurveyId);
+        //bool SurveyQuestionDetailExists(int SurveyId);
 
     }
 }

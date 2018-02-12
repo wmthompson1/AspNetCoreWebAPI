@@ -19,7 +19,7 @@ namespace AspNetCoreWebAPI.Services
             return _db.Set<TEntity>();
         }
 
-        public TEntity Get<TEntity>(int id, bool includeRelatedEntities = false) where TEntity : class
+        public TEntity Get<TEntity>(long id, bool includeRelatedEntities = false) where TEntity : class
         {
             var entity = _db.Set<TEntity>().Find(new object[] { id });
 
@@ -56,8 +56,8 @@ namespace AspNetCoreWebAPI.Services
         {
             _db.Set<TEntity>().Remove(item);
         }
-
-        public bool Exists<TEntity>(int id) where TEntity : class
+        //note: this implementation uses long for bigint and _NOT_ int
+        public bool Exists<TEntity>(long id) where TEntity : class
         {
             return _db.Set<TEntity>().Find(new object[] { id }) != null;
         }

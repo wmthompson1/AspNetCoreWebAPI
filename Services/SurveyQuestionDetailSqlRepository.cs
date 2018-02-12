@@ -5,6 +5,7 @@ using AspNetCoreWebAPI.Models;
 using AspNetCoreWebAPI.Data;
 using System;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 
 //William Thompson 1/19/2018
 
@@ -23,28 +24,35 @@ namespace AspNetCoreWebAPI.Services
 
 
 
-            public IEnumerable<SurveyQuestionDetailDTO> GetSurveyQuestionDetails()
-            {
-                return Mapper.Map<IEnumerable<SurveyQuestionDetailDTO>>(_db.SurveyQuestionDetail);
-            }
+        public IEnumerable<SurveyQuestionDetailDTO> GetSurveyQuestionDetails()
+        {
+            return Mapper.Map<IEnumerable<SurveyQuestionDetailDTO>>(_db.SurveyQuestionDetail);
+        }
 
 
-        //public SurveyQuestionDetailDTO GetSurveyQuestionDetail(int Id)
-        //{
-        //    var surveyQuestionDetail = _db.SurveyQuestionDetail.FirstOrDefault(p =>
-        //        p.Id.Equals(Id));
-
-        //    var surveyQuestionDetailDTO = Mapper.Map<SurveyQuestionDetailDTO>(surveyQuestionDetail);
+        public SurveyQuestionDetailDTO GetSurveyQuestionDetail(int Id)
+        {
+            var surveyQuestionDetail = _db.SurveyQuestionDetail.FirstOrDefault(p =>
+                p.Id.Equals(Id));
 
 
-        //    return surveyQuestionDetailDTO;
-        //}
+            var surveyQuestionDetailDTO = Mapper.Map<SurveyQuestionDetailDTO>(surveyQuestionDetail);
 
-        //public void AddSurveyQuestionDetail(SurveyQuestionDetailDTO surveyQuestionDetail)
-        //{
-        //    var surveyQuestionDetailToAdd = Mapper.Map<SurveyQuestionDetail>(surveyQuestionDetail);
-        //    _db.SurveyQuestionDetail.Add(surveyQuestionDetailToAdd);
-        //}
+
+            return surveyQuestionDetailDTO;
+        }
+
+        public void AddSurveyQuestionDetail(SurveyQuestionDetailDTO surveyQuestionDetail)
+        {
+
+            // wnt
+            var proc = "[test].[usp_SurveyDetail_Add] @p0;";
+            var results = _db.SurveyQuestionDetail.FromSql(proc, surveyQuestionDetail.SurveyId);
+
+
+            return ;
+
+        }
 
         //public bool Save()
         //{
@@ -58,7 +66,7 @@ namespace AspNetCoreWebAPI.Services
         //    var surveyQuestionDetailToUpdateItem = _db.SurveyQuestionDetail.FirstOrDefault(p => p.Id.Equals(id));
 
         //    if (surveyQuestionDetailToUpdateItem == null) return;
-                        
+
         //    // map dto to entity
 
         //    var surveyQuestionDetailToUpdate = Mapper.Map<SurveyQuestionDetailDTO>(surveyQuestionDetailToUpdateItem);

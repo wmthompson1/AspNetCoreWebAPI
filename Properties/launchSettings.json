@@ -10,11 +10,10 @@
   "profiles": {
     "AspNetCoreWebAPI": {
       "commandName": "Project",
-      "launchBrowser": false,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:59897"
+      "applicationUrl": "http://localhost:59999"
     }
   }
 }
