@@ -9,12 +9,11 @@ namespace AspNetCoreWebAPI.Models
 {
     public class SurveyQuestionDetailUpdateDTO
     {
-        [Required(ErrorMessage = "You must enter an Id.")]
+
         //  [Key]
         //  [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //  This is a DTO for editing, so no id here.
-        //  public int64 Id { get; set; }
 
+        //[Required(ErrorMessage = "You must enter an Id.")]
         public int SurveyId { get; set; }
         public string SurveyName { get; set; }
         public int PageId { get; set; }
