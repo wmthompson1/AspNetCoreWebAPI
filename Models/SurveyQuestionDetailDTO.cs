@@ -9,7 +9,7 @@ namespace AspNetCoreWebAPI.Models
 {
     public class SurveyQuestionDetailDTO
     {
-        public Int64 Id { get; set; }
+        //public Int64 Id { get; set; }
         public int SurveyId { get; set; }
         public string SurveyName { get; set; }
         public int PageId { get; set; }
@@ -24,8 +24,11 @@ namespace AspNetCoreWebAPI.Models
         public bool IsRequired { get; set; }
         public bool Visible { get; set; }
         public decimal QuestionSortId { get; set; }
-        public string instructions { get; set; }
+        public string Instructions { get; set; }
         public decimal PageSortId { get; set; }
+
+        public string LeaverYear { get; set; }
+        public string SurveyTypeCode { get; set; }
 
 
     }

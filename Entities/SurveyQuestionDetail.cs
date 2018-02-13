@@ -12,28 +12,22 @@ namespace AspNetCoreWebAPI.Entities
     {
         //must use fluent api to configure composite keys
       
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        //[Required]
-        //[Key]
-        public long Id { get; set; }
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        ////[Required]
+        ////[Key]
+        //[NotMapped]
+        //public long Id { get; set; }
 
-        [Required]
-        //[Key]
         public int SurveyId { get; set; }
 
         [StringLength(500)]
         public string SurveyName { get; set; }
 
-        [Required]
-        //[Key]
         public int PageId { get; set; }
 
         [StringLength(500)]
         public string PageName { get; set; }
 
-
-        [Required]
-        //[Key]
         public int QuestionId { get; set; }
 
         [StringLength(50)]
@@ -48,7 +42,6 @@ namespace AspNetCoreWebAPI.Entities
         [StringLength(50)]
         public string QuestionNumberText { get; set; }
 
-
         public bool? IsRequired { get; set; }
 
         public bool? Visible { get; set; }
@@ -61,10 +54,10 @@ namespace AspNetCoreWebAPI.Entities
         public decimal? PageSortId { get; set; }
 
         [StringLength(7)]
-        public string leaverYear { get; set; }
+        public string LeaverYear { get; set; }
 
         [StringLength(50)]
-        public string surveyTypeCode { get; set; }
+        public string SurveyTypeCode { get; set; }
 
 
     }

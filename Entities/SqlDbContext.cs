@@ -11,6 +11,12 @@ namespace AspNetCoreWebAPI.Entities
         public DbSet<Survey> Survey { get; set; }
         public DbSet<SurveyQuestionDetail> SurveyQuestionDetail { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<SurveyQuestionDetail>()
+                .HasKey(t => new { t.SurveyId, t.PageId, t.QuestionId });
+        }
+
         public SqlDbContext(DbContextOptions<SqlDbContext> options)
         : base(options)
         {

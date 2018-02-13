@@ -45,16 +45,30 @@ namespace AspNetCoreWebAPI.Services
         }
 
 
-        public SurveyQuestionDetailDTO GetSurveyQuestionDetail(int Id)
+        public IEnumerable<SurveyQuestionDetailDTO> GetSurveyQuestionDetail(int SurveyId)
         {
-            var surveyQuestionDetail = _db.SurveyQuestionDetail.FirstOrDefault(p =>
-                p.Id.Equals(Id));
+
+            var surveyQuestionDetail = _db.SurveyQuestionDetail
+                .FromSql("Select * from test.SurveyQuestionDetail")
+                .Where(p => p.SurveyId.Equals(SurveyId));
 
 
-            var surveyQuestionDetailDTO = Mapper.Map<SurveyQuestionDetailDTO>(surveyQuestionDetail);
+            var DTOs = Mapper.Map<IEnumerable<SurveyQuestionDetailDTO>>(surveyQuestionDetail);
+            try
+            {
+                Console.WriteLine("test: {0}", "Test");
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+            finally
+            {
 
-            return surveyQuestionDetailDTO;
+            }
+
+            return DTOs;
         }
 
         public void AddSurveyQuestionDetail(SurveyQuestionDetailCreateDTO surveyQuestionDetail)

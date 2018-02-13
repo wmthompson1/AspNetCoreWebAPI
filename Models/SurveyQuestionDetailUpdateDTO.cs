@@ -32,5 +32,10 @@ namespace AspNetCoreWebAPI.Models
         public string instructions { get; set; }
         public decimal PageSortId { get; set; }
 
+        public string LeaverYear { get; set; }
+        public string SurveyTypeCode { get; set; }
+
+
+
     }
 }
