@@ -10,12 +10,12 @@ namespace AspNetCoreWebAPI.Services
     {
         public IEnumerable<SurveyDTO> GetSurveys()
         {
-            return MocksurveyData.Current.Surveys;
+            return MockSurveyData.Current.Surveys;
         }
 
         public SurveyDTO GetSurvey(int Id)
         {
-            var Survey = MocksurveyData.Current.Surveys.FirstOrDefault(p =>
+            var Survey = MockSurveyData.Current.Surveys.FirstOrDefault(p =>
                 p.Id.Equals(Id));
 
 
@@ -26,7 +26,7 @@ namespace AspNetCoreWebAPI.Services
         {
              var id = GetSurveys().Max(m => m.Id) + 1;
             survey.Id = id;
-            MocksurveyData.Current.Surveys.Add(survey);
+            MockSurveyData.Current.Surveys.Add(survey);
         }
 
         public bool Save()
@@ -59,7 +59,7 @@ namespace AspNetCoreWebAPI.Services
 
         public bool SurveyExists(int surveyId)
         {
-            return MocksurveyData.Current.Surveys.Count(p => p.Id.Equals(surveyId)).Equals(1);
+            return MockSurveyData.Current.Surveys.Count(p => p.Id.Equals(surveyId)).Equals(1);
         }
 
 
@@ -67,7 +67,7 @@ namespace AspNetCoreWebAPI.Services
         {
 
 
-            MocksurveyData.Current.Surveys.Remove(survey);
+            MockSurveyData.Current.Surveys.Remove(survey);
         }
 
 

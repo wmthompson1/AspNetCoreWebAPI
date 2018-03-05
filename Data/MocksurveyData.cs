@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace AspNetCoreWebAPI.Data
 {
-    public class MocksurveyData
+    public class MockSurveyData
     {
         // Create static instance of the MocksurveyData class
-        public static MocksurveyData Current { get; } = new MocksurveyData();
+        public static MockSurveyData Current { get; } = new MockSurveyData();
         public List<SurveyDTO> Surveys { get; set; }
 
 
-        public MocksurveyData()
+        public MockSurveyData()
         {
             Surveys = new List<SurveyDTO>
             {

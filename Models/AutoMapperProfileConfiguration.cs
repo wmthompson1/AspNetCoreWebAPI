@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using AspNetCoreWebAPI.Entities;
-
+using System.Collections.Generic;
 
 namespace AspNetCoreWebAPI.Models
 { 
@@ -16,12 +16,15 @@ public class AutoMapperProfileConfiguration : Profile
             CreateMap<SurveyDTO, Survey>();
 
             // William Thompson
-            CreateMap<User, UserDTO>();
-            CreateMap<UserDTO, User>();
+
             // Use CreateMap... Etc.. here (Profile methods are the same as configuration methods)
 
             CreateMap<SurveyQuestionDetail, SurveyQuestionDetailDTO>();
             CreateMap<SurveyQuestionDetailDTO, SurveyQuestionDetail>();
+
+            CreateMap<IEnumerable<SurveyQuestion>, SurveyQuestionDTO>();
+            CreateMap<SurveyQuestionDTO, IEnumerable<SurveyQuestion>>();
+
         }
 
         //public AutoMapperProfileConfiguration()

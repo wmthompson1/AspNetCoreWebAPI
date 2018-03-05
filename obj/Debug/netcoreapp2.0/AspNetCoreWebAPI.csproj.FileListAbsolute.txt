@@ -4,9 +4,9 @@ C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\bin\Debug\netcoreapp2.0\
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\bin\Debug\netcoreapp2.0\AspNetCoreWebAPI.dll
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\bin\Debug\netcoreapp2.0\AspNetCoreWebAPI.pdb
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\AspNetCoreWebAPI.csproj.CoreCompileInputs.cache
-C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\AspNetCoreWebAPI.AssemblyInfoInputs.cache
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\AspNetCoreWebAPI.AssemblyInfo.cs
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\AspNetCoreWebAPI.dll
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\AspNetCoreWebAPI.pdb
 C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\AspNetCoreWebAPI.csprojResolveAssemblyReference.cache
+C:\thompson\src\repos\AspNetCoreWebAPI\AspNetCoreWebAPI\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

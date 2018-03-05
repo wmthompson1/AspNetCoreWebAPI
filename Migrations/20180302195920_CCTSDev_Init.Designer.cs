@@ -12,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 namespace AspNetCoreWebAPI.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    partial class SqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180302195920_CCTSDev_Init")]
+    partial class CCTSDev_Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -85,58 +85,7 @@ namespace AspNetCoreWebAPI.Services
 
         }
 
-        //public bool Save()
-        //{
-        //    return _db.SaveChanges() >= 0;
-        //}
 
-        //public void UpdateSurveyQuestionDetail(int id, SurveyQuestionDetailUpdateDTO surveyQuestionDetail)
-        //{
-        //    var stub = GetSurveyQuestionDetail(id);
-
-        //    var surveyQuestionDetailToUpdateItem = _db.SurveyQuestionDetail.FirstOrDefault(p => p.Id.Equals(id));
-
-        //    if (surveyQuestionDetailToUpdateItem == null) return;
-
-        //    // map dto to entity
-
-        //    var surveyQuestionDetailToUpdate = Mapper.Map<SurveyQuestionDetailDTO>(surveyQuestionDetailToUpdateItem);
-
-        //    //surveyQuestionDetailToUpdate.Name = surveyQuestionDetail.Name;
-        //    //surveyQuestionDetailToUpdate.Description = surveyQuestionDetail.Description;
-        //    //surveyQuestionDetailToUpdate.SurveyQuestionDetailTypeCode = surveyQuestionDetail.SurveyQuestionDetailTypeCode;
-        //    //surveyQuestionDetailToUpdate.Instructions = surveyQuestionDetail.Instructions;
-        //    //surveyQuestionDetailToUpdate.IsLocked = surveyQuestionDetail.IsLocked;
-
-        //    //surveyQuestionDetailToUpdate.CloseDate = surveyQuestionDetail.CloseDate;
-        //    //surveyQuestionDetailToUpdate.CreateDate = surveyQuestionDetail.CreateDate;
-        //    //surveyQuestionDetailToUpdate.CreatedBy = surveyQuestionDetail.CreatedBy;
-        //    //surveyQuestionDetailToUpdate.UpdateDate = surveyQuestionDetail.UpdateDate;
-        //    //surveyQuestionDetailToUpdate.UpdatedBy = surveyQuestionDetail.UpdatedBy;
-
-        //    //surveyQuestionDetailToUpdate.SchoolYear = surveyQuestionDetail.SchoolYear;
-        //    //surveyQuestionDetailToUpdate.LeaverYear = surveyQuestionDetail.LeaverYear;
-        //    //surveyQuestionDetailToUpdate.IsReported = surveyQuestionDetail.IsReported;
-        //    //surveyQuestionDetailToUpdate.OpenDate = surveyQuestionDetail.OpenDate;
-
-        //}
-
-        //public bool SurveyQuestionDetailExists(int surveyQuestionDetailId)
-        //{
-        //    return _db.SurveyQuestionDetail.Count(p => p.Id.Equals(surveyQuestionDetailId)).Equals(1);
-        //}
-
-
-        //public void DeleteSurveyQuestionDetail(SurveyQuestionDetailDTO surveyQuestionDetail)
-        //{
-
-        //    var surveyQuestionDetailToDelete = _db.SurveyQuestionDetail.FirstOrDefault(p =>
-        //    p.Id.Equals(surveyQuestionDetail.Id));
-
-        //    if (surveyQuestionDetailToDelete != null)
-        //        _db.SurveyQuestionDetail.Remove(surveyQuestionDetailToDelete);
-
-        //}
 
     }
 }

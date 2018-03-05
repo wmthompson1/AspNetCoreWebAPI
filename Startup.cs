@@ -66,19 +66,18 @@ namespace AspNetCoreWebAPI
                     .AllowCredentials());
             });
 
-            //var conn = Configuration["connectionStrings:sqlConnection"];
-            var conn = Configuration["connectionStrings:CCTSTSFContext"];
+            var conn = Configuration["connectionStrings:sqlConnection"];
+            //var conn = Configuration["connectionStrings:CCTSTSFContext"];
             
             services.AddDbContext<SqlDbContext>(options =>
                 options.UseSqlServer(conn));
 
-            services.AddScoped(typeof(IBookstoreRepository), typeof(BookstoreSqlRepository));
+
             services.AddScoped(typeof(IGenericEFRepository), typeof(GenericEFRepository));
-            // William Thompson 1/15
             services.AddScoped(typeof(ISurveyRepository), typeof(SurveySqlRepository));
             services.AddScoped(typeof(ISurveyQuestionDetailRepository), typeof(SurveyQuestionDetailSqlRepository));
-            services.AddScoped(typeof(IUserService), typeof(UserService));
-            
+            services.AddScoped(typeof(ISurveyQuestionRepository), typeof(SurveyQuestionSqlRepository));
+
             services.AddMvc();
 
             //automapper William Thompson
@@ -87,7 +86,6 @@ namespace AspNetCoreWebAPI
             // CORS
             services.Configure<MvcOptions>(options =>
             {
-                //options.Filters.Add(new CorsAuthorizationFilterFactory("AllowSpecificOrigin"));
                 options.Filters.Add(new CorsAuthorizationFilterFactory("CorsPolicy"));
 
             });
@@ -117,15 +115,10 @@ namespace AspNetCoreWebAPI
             app.UseCors(builder =>
                builder.WithOrigins("http://localhost:4200"));
 
-
             // IMPORTANT: Make sure UseCors() is called BEFORE this
             app.UseMvc();
 
-            //app.Run(async (context) =>
-            //{
-            //    var message = Configuration["Message"];
-            //    await context.Response.WriteAsync(message);
-            //});
+
         }
     }
 }
